@@ -19,20 +19,20 @@ This document will go through any data downloads, cleaning of data, visualizatio
 Before getting started, load the doBy, ggplot2, and add text packages into your R workspace. We will use functions from both packages through the project.
 
 
-```{r}
+```r
 if (!require("doBy")) {
   install.packages("doBy", repos="http://cran.rstudio.com/") 
 }
 ```
 
-```{r}
+```r
 library(doBy)
 if (!require("ggplot2")) {
   install.packages("ggplot2", repos="http://cran.rstudio.com/") 
 }
 ```
 
-```{r}
+```r
 library(ggplot2)
 ```
 
@@ -47,18 +47,14 @@ circumference: a numeric vector of trunk circumferences (mm). This is probably ‚
 at breast height‚Äù, a standard measurement in forestry.
 
 First, we want to get the circumference mean and median for the trees.
-```{r}
+```r
 
 summaryBy(circumference ~ Tree, data = Orange, FUN = list(mean, median))
 
 ```
 
 Next, we would like to plot the Age in days versus the Circumference of the trees, the plot will show different symbols and colors for each tree.
-```{r}
-##Plot of Age in Days versus Circumference (mm) of the trees in the data set, pch creates the different symbols
-#used for each of the tree types plotted on the chart
-##Plot of Age in Days versus Circumference (mm) of the trees in the data set, pch creates the different symbols
-#used for each of the tree types plotted on the chart
+```r
 plot(circumference ~ age,
            xlab = "Age (Days)",
            ylab = "Circumference (mm)",
@@ -67,13 +63,11 @@ plot(circumference ~ age,
            col = c("red", "green","blue", "yellow", "orange")[as.numeric(Tree)],
            data = Orange)
            
-#Adds legend to the scatter plot to identify which symbol belongs to which tree.
 legend("topleft", pch = c(16, 17, 18, 19, 20), col = c("red", "green","blue", "yellow", "orange"), legend = c("1","2","3","4","5"), title = "Trees")
 ```
 
 Finally, we will look at comparitive boxplots of circumferences by tree, sorted in increasing order of maximum diameter.
-```{r}
-#Comparitive Boxplots of Circumferences by Tree, sorted in increasing order of maximum diameter 
+```r
 boxplot(circumference~Tree,data=Orange, main="Boxplot Circumference by Tree", xlab="Tree", ylab="Circumference")
 
 ```
